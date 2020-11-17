@@ -251,6 +251,8 @@ en:
             gtin13:
               invalid: "Enter a valid barcode number"
               wrong_length: "Enter a valid barcode number"
+            when_placed_on_market:
+              blank: "Select yes if the product was placed on the market before 1 January 2021"
 
         risk_assessment_form:
           attributes:
@@ -460,6 +462,9 @@ en:
     genuine: "Genuine"
     unsure: "Unsure"
     missing: "Not provided"
+    before_2021: "Before 1 January 2021"
+    on_or_after_2021: "On or after 1 January 2021"
+    unknown: "Unable to ascertain"
 
   corrective_action:
     attributes:

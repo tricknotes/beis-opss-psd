@@ -10,6 +10,12 @@ class Product < ApplicationRecord
     "unsure" => "unsure"
   }
 
+  enum when_placed_on_market: {
+    "before_2021" => "before_2021",
+    "on_or_after_2021" => "on_or_after_2021",
+    "unknown" => "unknown"
+  }
+
   index_name [ENV.fetch("ES_NAMESPACE", "default_namespace"), Rails.env, "products"].join("_")
 
   has_many_attached :documents

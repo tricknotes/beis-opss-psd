@@ -18,6 +18,7 @@ class ProductForm
   attribute :subcategory
   attribute :webpage
   attribute :created_at, :datetime
+  attribute :when_placed_on_market
 
   before_validation { trim_line_endings(:description) }
   before_validation { convert_gtin_to_13_digits(:gtin13) }
@@ -29,6 +30,7 @@ class ProductForm
   validates :category, presence: true
   validates :subcategory, presence: true
   validates :name, presence: true
+  validates :when_placed_on_market, presence: true
   validates :description, length: { maximum: 10_000 }
 
   def self.from(product)

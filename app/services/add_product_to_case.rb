@@ -16,11 +16,13 @@ class AddProductToCase
            :category,
            :user,
            :product,
+           :when_placed_on_market,
            to: :context
 
   def call
     context.fail!(error: "No investigation supplied") unless investigation.is_a?(Investigation)
     context.fail!(error: "No user supplied") unless user.is_a?(User)
+    when_placed_on_market = context.when_placed_on_market
 
     Product.transaction do
       context.product = investigation.products.create!(
@@ -35,13 +37,15 @@ class AddProductToCase
         subcategory: subcategory,
         category: category,
         webpage: webpage,
-        source: build_user_source
+        source: build_user_source,
+        when_placed_on_market: when_placed_on_market
       )
 
       context.activity = create_audit_activity_for_product_added
 
       send_notification_email
     end
+
   end
 
 private

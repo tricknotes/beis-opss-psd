@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_115921) do
+ActiveRecord::Schema.define(version: 2020_11_17_141013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_115921) do
   create_enum "authenticities", ["counterfeit", "genuine", "unsure"]
   create_enum "reported_reasons", ["unsafe", "non_compliant", "unsafe_and_non_compliant", "safe_and_compliant"]
   create_enum "risk_levels", ["serious", "high", "medium", "low", "other"]
+  create_enum "when_placed_on_markets", ["before_2021", "on_or_after_2021", "unknown"]
 
   create_table "active_storage_attachments", id: :serial, force: :cascade do |t|
     t.bigint "blob_id", null: false
@@ -231,6 +232,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_115921) do
     t.string "subcategory"
     t.datetime "updated_at", null: false
     t.string "webpage"
+    t.enum "when_placed_on_market", as: "when_placed_on_markets"
   end
 
   create_table "rapex_imports", id: :serial, force: :cascade do |t|
