@@ -45,7 +45,6 @@ class AddProductToCase
 
       send_notification_email
     end
-
   end
 
 private
