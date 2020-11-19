@@ -88,8 +88,7 @@ private
   def set_selected_when_placed_on_market_option(items, product_form)
     items.each do |item|
 
-      # what is this
-      # next if skip_selected_item_for_selected_option?(item, product_form)
+      next if skip_selected_item_for_selected_option?(item, product_form)
 
       item[:selected] = true if when_placed_on_market_option_selected?(item, product_form)
     end
