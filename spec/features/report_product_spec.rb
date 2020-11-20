@@ -103,7 +103,8 @@ RSpec.feature "Reporting a product", :with_stubbed_elasticsearch, :with_stubbed_
           webpage: Faker::Internet.url,
           country_of_origin: Country.all.sample.first,
           description: Faker::Lorem.sentence,
-          authenticity: "Yes"
+          authenticity: "Yes",
+          when_placed_on_market: "Yes"
         }
       end
       let(:coronavirus) { false }
@@ -238,7 +239,8 @@ RSpec.feature "Reporting a product", :with_stubbed_elasticsearch, :with_stubbed_
           name: Faker::Lorem.sentence,
           category: Rails.application.config.product_constants["product_category"].sample,
           type: Faker::Appliance.equipment,
-          authenticity: "Yes"
+          authenticity: "Yes",
+          when_placed_on_market: "Yes"
         }
       end
 
@@ -449,6 +451,10 @@ RSpec.feature "Reporting a product", :with_stubbed_elasticsearch, :with_stubbed_
     select with[:category],                      from: "Product category"
     select with[:country_of_origin],             from: "Country of origin" if with[:country_of_origin]
     fill_in "Product sub-category", with: with[:type]
+
+    within_fieldset("Was the product placed on the market before 1 January 2021?") do
+      choose with[:when_placed_on_market]
+    end
 
     within_fieldset("Is the product counterfeit?") do
       choose with[:authenticity]
